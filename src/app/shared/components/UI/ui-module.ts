@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Button } from './button/button';
 import { Table } from './table/table';
-import {Input} from './input/input';
+import { CustomInput } from './input/input';
+import { Dialog } from './dialog/dialog';
+import { Spinner } from './spinner/spinner';
 
-
-@NgModule({
-  declarations: [Button, Table, Input],
-  imports: [
-    CommonModule
-  ]
-})
-export class UIModule { }
+export const UI_COMPONENTS = [
+  Button,
+  Table,
+  CustomInput,
+  Dialog,
+  Spinner
+];

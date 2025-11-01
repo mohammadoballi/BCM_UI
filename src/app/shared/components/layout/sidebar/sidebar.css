@@ -1,0 +1,28 @@
+.app-sidebar {
+  background-color: #2d3748;
+  color: white;
+  padding: 10px;
+}
+
+.app-sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #e0e0e0;
+  transition: background 0.2s;
+}
+
+.app-sidebar-item:hover {
+  background: #3a3f47;
+}
+
+.app-sidebar-item.active {
+  background: #4a90e2;
+  color: white;
+  font-weight: bold;
+}
+
+.app-sidebar-item i {
+  margin-right: 10px;
+}

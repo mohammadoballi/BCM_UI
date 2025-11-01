@@ -9,32 +9,18 @@ import { CommonModule } from '@angular/common';
 })
 export class Sidebar {
   constructor() { }
-    items: SidebarItem[] = [
+    items = [
     {
       item: 'Dashboard',
       icon: 'fa fa-home',
       route: '/dashboard',
-    },
+    },    
     {
-      item: 'Users',
-      icon: 'fa fa-users',
-      route: '/users',
+      item: 'Card',
+      icon: 'fa fa-credit-card',
+      route: '/card',
     },
-    {
-      item: 'Roles',
-      icon: 'fa fa-user',
-      route: '/roles',
-    },
-    {
-      item: 'Permissions',
-      icon: 'fa fa-user',
-      route: '/permissions',
-    },
-    {
-      item: 'Settings',
-      icon: 'fa fa-cog',
-      route: '/settings',
-    },
+  
   ];
 
 }

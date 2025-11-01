@@ -1,1 +1,4 @@
-<p>input works!</p>
+<div class="coustom-input">
+<label>{{ label }}</label>
+<input [type]="type" [ngModel]="value" (ngModelChange)="valueChange.emit($event)" [ngModelOptions]="{standalone: true}" class="form-control" />
+</div>

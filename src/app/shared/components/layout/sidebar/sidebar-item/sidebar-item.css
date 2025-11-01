@@ -1,0 +1,18 @@
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #e0e0e0;
+  transition: background 0.2s;
+}
+
+.sidebar-item:hover {
+  background: #3a3f47;
+}
+
+.sidebar-item.active {
+  background: #4a90e2;
+  color: white;
+  font-weight: bold;
+}

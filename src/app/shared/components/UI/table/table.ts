@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-table',
   templateUrl: './table.html',
   styleUrl: './table.css',
-  standalone:false,
+  standalone:true,
 })
 export class Table {
 

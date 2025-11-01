@@ -1,4 +1,7 @@
-<div routerLink="{{route}}" class="sidebar-item">
-    <i class="{{icon}}"></i>
-    <span>{{item}}</span>
+<div 
+  (click)="changeRoute(route)" 
+  class="sidebar-item" 
+  [class.active]="isActive(route)">
+  <i [class]="icon"></i>
+  <span>{{item}}</span>
 </div>

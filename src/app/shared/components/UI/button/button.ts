@@ -3,7 +3,7 @@ import { Component, input, Input } from '@angular/core';
 @Component({
   selector: 'app-button',
   templateUrl: './button.html',
-  standalone:false,
+  standalone:true,
   styleUrl: './button.css',
 })
 
