@@ -1,0 +1,18 @@
+.app-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background: #ffffff;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

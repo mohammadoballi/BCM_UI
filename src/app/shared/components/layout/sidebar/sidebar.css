@@ -1,28 +1,37 @@
 .app-sidebar {
-  background-color: #2d3748;
-  color: white;
-  padding: 10px;
-}
-
-.app-sidebar-item {
   display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  cursor: pointer;
-  color: #e0e0e0;
-  transition: background 0.2s;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 12px;
+  height: 100%;
+  overflow-y: auto;
+  animation: slideInLeft 0.5s ease;
 }
 
-.app-sidebar-item:hover {
-  background: #3a3f47;
+.app-sidebar::-webkit-scrollbar {
+  width: 6px;
 }
 
-.app-sidebar-item.active {
-  background: #4a90e2;
-  color: white;
-  font-weight: bold;
+.app-sidebar::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.app-sidebar-item i {
-  margin-right: 10px;
+.app-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.app-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

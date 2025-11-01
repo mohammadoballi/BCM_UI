@@ -15,11 +15,11 @@ export const routes: Routes = [
     component: Login,
   },
   {
-    path: 'home',
+    path: 'dashboard',
     component:  Layout,
     children: [
       {
-        path: 'dashboard',
+        path: '',
         component: Dashboard,
         canActivate: [authorizeGuard]
       },

@@ -1,1 +1,8 @@
-<button [type]="type" [disabled]="disabled" [class]="class" [innerHTML]="label"></button>
+<button
+  [type]="type"
+  [disabled]="disabled"
+  [ngClass]="['ui-btn', class]"
+>
+  <i *ngIf="icon" [class]="icon"></i>
+  <span>{{ label }}</span>
+</button>

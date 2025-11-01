@@ -1,8 +1,28 @@
-  <div>
-    <h1>Login</h1>
-    <form (ngSubmit)="onSubmit()"> 
-        <app-input [label]="'Username'" [type]="'text'" [(value)]="username"></app-input>
-        <app-input [label]="'Password'" [type]="'password'" [(value)]="password"></app-input>
-        <app-button [label]="'Login'" [type]="'submit'" [class]="'btn btn-primary'" [icon]="'fa fa-sign-in'" [disabled]="false"></app-button>
+<div class="login-page">
+  <div class="login-box">
+    <h1 class="title">BCM Portal</h1>
+    <p class="subtitle">Welcome back! Please log in to continue.</p>
+
+    <form (ngSubmit)="onSubmit()">
+      <app-input
+        [label]="'Username'"
+        [type]="'text'"
+        [(value)]="username"
+      ></app-input>
+
+      <app-input
+        [label]="'Password'"
+        [type]="'password'"
+        [(value)]="password"
+      ></app-input>
+
+      <app-button
+        [label]="'Login'"
+        [type]="'submit'"
+        [class]="'primary w-full'"
+        [icon]="'fa fa-sign-in'"
+        [disabled]="false"
+      ></app-button>
     </form>
+  </div>
 </div>

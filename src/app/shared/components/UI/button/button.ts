@@ -1,10 +1,12 @@
 import { Component, input, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.html',
   standalone:true,
   styleUrl: './button.css',
+  imports: [CommonModule],
 })
 
 export class Button {

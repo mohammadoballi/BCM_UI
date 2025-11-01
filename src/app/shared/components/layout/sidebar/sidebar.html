@@ -1,6 +1,8 @@
-
 <div class="app-sidebar">
-  <div *ngFor="let item of items" class="app-sidebar-item" [class.active]="">
-    <app-sidebar-item [item]="item.item" [icon]="item.icon" [route]="item.route"></app-sidebar-item>
-  </div>
+  <app-sidebar-item 
+    *ngFor="let item of items" 
+    [item]="item.item" 
+    [icon]="item.icon" 
+    [route]="item.route">
+  </app-sidebar-item>
 </div>

@@ -13,12 +13,12 @@ export class Sidebar {
     {
       item: 'Dashboard',
       icon: 'fa fa-home',
-      route: '/dashboard',
+      route: 'dashboard',
     },    
     {
       item: 'Card',
       icon: 'fa fa-credit-card',
-      route: '/card',
+      route: 'dashboard/card',
     },
   
   ];

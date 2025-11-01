@@ -23,7 +23,7 @@ export class Login {
       .subscribe(response => {
         console.log(response);
         localStorage.setItem('token', response.data.token);
-        this.router.navigate(['/home/dashboard']);
+        this.router.navigate(['/dashboard']);
       });
   }
 }

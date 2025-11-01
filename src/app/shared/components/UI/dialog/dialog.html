@@ -1,1 +1,13 @@
-<p>dialog works!</p>
+<div class="dialog-overlay">
+  <div class="dialog-card glass card fade-in">
+    <div class="dialog-header">
+      <ng-content select="[dialog-title]"></ng-content>
+    </div>
+    <div class="dialog-body">
+      <ng-content></ng-content>
+    </div>
+    <div class="dialog-actions">
+      <ng-content select="[dialog-actions]"></ng-content>
+    </div>
+  </div>
+</div>

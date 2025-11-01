@@ -20,7 +20,9 @@ export class App implements OnInit {
     const token = localStorage.getItem('token');
 
     if (token) {
-      this.router.navigate(['/home/dashboard']);
+      if(this.router.url === '/login') {
+        this.router.navigate(['/dashboard']);
+      }
     } else {
       this.router.navigate(['/login']);
     }
