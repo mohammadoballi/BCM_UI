@@ -1,0 +1,385 @@
+/* Dialog Header Actions */
+.dialog-header-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 12px;
+}
+
+.download-btn,
+.close-btn-top {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #475569 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  background: #ffffff !important;
+  color: #0369a1 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(3, 105, 161, 0.3);
+}
+
+.close-btn-top:hover {
+  background: #ffffff !important;
+  color: #dc2626 !important;
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+}
+
+/* Hidden class for conditional rendering */
+.hidden {
+  display: none !important;
+}
+
+.dialog-content {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* Business Card Template */
+.business-card-template {
+  display: flex;
+  width: 100%;
+  max-width: 750px;
+  height: 420px;
+  background: #ffffff;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+  animation: slideIn 0.4s ease;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .business-card-template {
+    flex-direction: column;
+    height: auto;
+    max-width: 90vw;
+  }
+  
+  .card-left {
+    padding: 32px 24px;
+  }
+  
+  .card-right {
+    width: 100% !important;
+    min-height: 250px;
+  }
+  
+  .card-name {
+    font-size: 26px;
+  }
+  
+  .contact-info {
+    gap: 12px;
+  }
+  
+  .contact-item {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .business-card-template {
+    max-width: 95vw;
+    height: auto;
+  }
+  
+  .card-left {
+    padding: 24px 20px;
+  }
+  
+  .card-name {
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+  
+  .card-title {
+    font-size: 13px;
+  }
+  
+  .contact-item {
+    font-size: 12px;
+    gap: 10px;
+  }
+  
+  .contact-icon {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 18px !important;
+  }
+  
+  .info-badge {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .logo-circle {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .dialog-header-actions {
+    top: 12px;
+    right: 12px;
+    gap: 8px;
+  }
+  
+  .download-btn,
+  .close-btn-top {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Left Side - White Section */
+.card-left {
+  flex: 1;
+  background: #ffffff;
+  padding: 50px 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.card-name {
+  font-size: 32px;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #64748b;
+  margin: 0;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+/* Contact Information */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  color: #1e293b;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(4px);
+  color: #0c4a6e;
+}
+
+.contact-icon {
+  width: 22px !important;
+  height: 22px !important;
+  font-size: 22px !important;
+  color: #0369a1;
+  flex-shrink: 0;
+}
+
+/* Additional Info Badges */
+.additional-info {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.info-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  transition: all 0.3s ease;
+}
+
+.info-badge:hover {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info-badge mat-icon {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 18px !important;
+  color: #0369a1;
+}
+
+/* Right Side - Blue Section */
+.card-right {
+  width: 320px;
+  background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0284c7 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Decorative Wave */
+.decorative-wave {
+  position: absolute;
+  top: -100px;
+  left: -80px;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.decorative-wave::before {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.decorative-wave::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+/* Logo Section */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  z-index: 1;
+}
+
+.logo-circle {
+  width: 160px;
+  height: 160px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-inner mat-icon {
+  font-size: 72px;
+  width: 72px;
+  height: 72px;
+  color: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.logo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-inner img.hidden {
+  display: none;
+}
+
+.logo-inner mat-icon.hidden {
+  display: none;
+}
+
+.company-name {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 3px;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Material Dialog Override */
+::ng-deep .mat-mdc-dialog-container {
+  border-radius: 16px !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+}
+
+::ng-deep .custom-dialog-container .mat-mdc-dialog-container {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}

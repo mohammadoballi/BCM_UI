@@ -1,9 +1,19 @@
 <div class="layout">
-  <app-header></app-header>
+  <app-header [isSidebarOpen]="isSidebarOpen" (toggleSidebar)="toggleSidebar()"></app-header>
 
   <div class="layout-body">
-    <app-sidebar>  </app-sidebar>
-    <main class="content">
+    <!-- Overlay for mobile -->
+    <div class="sidebar-overlay" 
+         *ngIf="isMobile && isSidebarOpen" 
+         (click)="closeSidebarOnMobile()"></div>
+
+    <app-sidebar 
+      [class.sidebar-open]="isSidebarOpen" 
+      [class.sidebar-closed]="!isSidebarOpen"
+      (click)="closeSidebarOnMobile()">
+    </app-sidebar>
+    
+    <main class="content" [class.sidebar-open]="isSidebarOpen" [class.sidebar-closed]="!isSidebarOpen">
       <app-content></app-content>
     </main>
   </div>

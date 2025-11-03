@@ -1,28 +1,68 @@
 <div class="card-page">
-  <div class="page-header">
-    <h1 class="page-title">Card Details</h1>
-  </div>
+  <app-titlebar 
+    [title]="'Cards'" 
+    [subtitle]="'Search and browse cards'">
+  </app-titlebar>
 
   <div class="card-container">
-    <div class="card-section">
-      <h2 class="section-title">Overview</h2>
-      <p class="section-content">
-        This is a sample card page with glass morphism design matching the login page aesthetic.
-      </p>
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="openCreateDialog()" class="action-btn">
+        <mat-icon>add</mat-icon>
+        Create Card
+      </button>
+      <button mat-raised-button color="accent" (click)="openImportDialog()" class="action-btn">
+        <mat-icon>upload</mat-icon>
+        Import Cards
+      </button>
+      <button mat-raised-button (click)="openQRScannerDialog()" class="action-btn qr-btn">
+        <mat-icon>qr_code_scanner</mat-icon>
+        Scan QR Code
+      </button>
     </div>
 
-    <div class="card-section">
-      <h2 class="section-title">Details</h2>
-      <p class="section-content">
-        All components now feature the same beautiful animated gradient background with frosted glass effects.
-      </p>
+    <!-- Filters -->
+    <div class="filters-section">
+      <app-input
+        label="Name"
+        [value]="getAllRequest.name"
+        (valueChange)="onFilterChange('name', $event)">
+      </app-input>
+
+      <app-input
+        label="Email"
+        [value]="getAllRequest.email"
+        (valueChange)="onFilterChange('email', $event)">
+      </app-input>
+
+      <app-input
+        label="Phone"
+        [value]="getAllRequest.phone"
+        (valueChange)="onFilterChange('phone', $event)">
+      </app-input>
+
+      <app-select
+        label="Gender"
+        [value]="getAllRequest.gender"
+        [options]="genderOptions"
+        (valueChange)="onFilterChange('gender', $event)">
+      </app-select>
     </div>
 
+    <!-- Table -->
     <div class="card-section">
-      <h2 class="section-title">Actions</h2>
-      <p class="section-content">
-        The design is consistent across all pages with smooth animations and modern UI elements.
-      </p>
+      <app-table
+        [columns]="columns"
+        [data]="cards"
+        [pageIndex]="pageIndex"
+        [pageSize]="pageSize"
+        [total]="total"
+        [showActions]="true"
+        [actionButtons]="actionButtons"
+        (action)="onAction($event)"
+        (pageChange)="onPageChange($event)"
+        (pageSizeChange)="onPageSizeChange($event)">
+      </app-table>
     </div>
   </div>
 </div>

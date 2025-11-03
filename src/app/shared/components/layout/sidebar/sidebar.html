@@ -1,8 +1,14 @@
 <div class="app-sidebar">
-  <app-sidebar-item 
-    *ngFor="let item of items" 
-    [item]="item.item" 
-    [icon]="item.icon" 
-    [route]="item.route">
-  </app-sidebar-item>
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-text">BCM</div>
+  </div>
+  
+  <div class="sidebar-section">
+    <app-sidebar-item 
+      *ngFor="let item of items" 
+      [item]="item.item" 
+      [icon]="item.icon" 
+      [route]="item.route">
+    </app-sidebar-item>
+  </div>
 </div>

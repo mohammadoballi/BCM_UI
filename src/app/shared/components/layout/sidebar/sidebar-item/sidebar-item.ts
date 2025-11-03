@@ -5,7 +5,7 @@ import { Component, Input, inject } from '@angular/core';
   selector: 'app-sidebar-item',
   standalone: true,
   templateUrl: './sidebar-item.html',
-  styleUrl: './sidebar-item.css',
+  styleUrls: ['./sidebar-item.css'],
 })
 export class SidebarItem {
   @Input() item!: string;

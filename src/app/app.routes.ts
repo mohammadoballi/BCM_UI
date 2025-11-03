@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Layout } from './shared/components/layout/layout';
-import { Card } from './pages/card/card';
+import { CardManager } from './pages/card/card';
 import { authorizeGuard } from './core/guard/authorize-guard';
 export const routes: Routes = [
   {
@@ -25,7 +25,7 @@ export const routes: Routes = [
       },
       {
         path: 'card',
-        component: Card,
+        component: CardManager,
         canActivate: [authorizeGuard]
       },
     ],

@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Button } from '../../UI/button/button';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [Button],
+  imports: [CommonModule, Button],
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  styleUrls: ['./header.css'],
 })
 export class Header {
-  constructor(private router: Router) {}
+  @Input() isSidebarOpen: boolean = true;
+  @Output() toggleSidebar: EventEmitter<void> = new EventEmitter<void>();
+
+  constructor(private router: Router) {
+    console.log('Header component initialized');
+  }
+
+  onToggleSidebar() {
+    this.toggleSidebar.emit();
+  }
 
   logout() {
     localStorage.removeItem('token');

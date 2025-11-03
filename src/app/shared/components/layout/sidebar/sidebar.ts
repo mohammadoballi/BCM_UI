@@ -3,9 +3,10 @@ import { SidebarItem } from './sidebar-item/sidebar-item';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-sidebar',
+  standalone: true,
   imports: [SidebarItem, CommonModule],
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.css',
+  styleUrls: ['./sidebar.css'],
 })
 export class Sidebar {
   constructor() { }

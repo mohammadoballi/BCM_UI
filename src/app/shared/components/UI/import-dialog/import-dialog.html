@@ -1,0 +1,118 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>Import Cards</h2>
+  <button mat-icon-button (click)="close()" class="close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content class="dialog-content">
+  <!-- File Upload Section -->
+  <div class="upload-section">
+    <div class="upload-area" 
+         [class.has-file]="selectedFile"
+         [class.dragging]="isDragging"
+         (dragover)="onDragOver($event)"
+         (dragleave)="onDragLeave($event)"
+         (drop)="onDrop($event)">
+      <div class="upload-icon">
+        <mat-icon>{{ selectedFile ? 'description' : 'cloud_upload' }}</mat-icon>
+      </div>
+      
+      <div class="upload-text" *ngIf="!selectedFile">
+        <h3>Drop your file here or click to browse</h3>
+        <p>Supports CSV, Excel, and XML files (.csv, .xlsx, .xml)</p>
+      </div>
+
+      <div class="file-info" *ngIf="selectedFile">
+        <h3>{{ fileName }}</h3>
+        <p class="file-type">{{ fileType.toUpperCase() }} File</p>
+        <button mat-icon-button class="remove-file-btn" (click)="removeFile()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <input 
+        type="file" 
+        #fileInput 
+        (change)="onFileSelected($event)" 
+        accept=".csv,.xlsx,.xml"
+        style="display: none;"
+      />
+      
+      <button 
+        mat-raised-button 
+        color="primary" 
+        (click)="fileInput.click()"
+        *ngIf="!selectedFile"
+        class="browse-btn">
+        <mat-icon>folder_open</mat-icon>
+        Browse Files
+      </button>
+    </div>
+
+    <!-- Error Message -->
+    <div class="error-message" *ngIf="error">
+      <mat-icon>error</mat-icon>
+      <span>{{ error }}</span>
+    </div>
+
+    <!-- Upload Progress -->
+    <div class="upload-progress" *ngIf="uploading">
+      <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+      <p>Uploading... {{ uploadProgress }}%</p>
+    </div>
+  </div>
+
+  <!-- Preview Section -->
+  <div class="preview-section" *ngIf="previewData.length > 0 && !uploading">
+    <h3>Preview</h3>
+    <div class="preview-table-container">
+      <app-table
+        [columns]="tableColumns"
+        [data]="previewData"
+        [total]="previewData.length"
+        [pageSize]="10"
+        [showActions]="false"
+        [showExport]="false">
+      </app-table>
+    </div>
+    <p class="preview-note">
+      <mat-icon>info</mat-icon>
+      Total rows to import: {{ previewData.length }}
+    </p>
+  </div>
+
+  <!-- Instructions -->
+  <div class="instructions" *ngIf="!selectedFile">
+    <h4>File Format Requirements:</h4>
+    <ul>
+      <li>First row must contain column headers</li>
+      <li>Required columns: Name, Gender, Email, Phone ,Address, Birth Date</li>
+      <li>Optional columns: Image</li>
+      <li>Date format: YYYY-MM-DD</li>
+    </ul>
+    
+    <div class="template-buttons">
+      <button mat-stroked-button color="primary" class="download-template-btn" (click)="downloadCSVTemplate()">
+        <mat-icon>description</mat-icon>
+        Download CSV Template
+      </button>
+      <button mat-stroked-button color="primary" class="download-template-btn" (click)="downloadExcelTemplate()">
+        <mat-icon>table_chart</mat-icon>
+        Download Excel Template
+      </button>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-button (click)="close()">Cancel</button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="onImport()" 
+    [disabled]="!selectedFile || uploading || !!error">
+    <mat-icon>upload</mat-icon>
+    Import Cards
+  </button>
+</mat-dialog-actions>

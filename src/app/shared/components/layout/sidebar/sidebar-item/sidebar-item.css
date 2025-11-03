@@ -1,39 +1,74 @@
 .sidebar-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
+  gap: 14px;
+  padding: 14px 20px;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
   font-size: 15px;
   letter-spacing: 0.3px;
-  border-radius: 10px;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  border-radius: 12px;
+  transition: all 0.3s ease;
   animation: fadeIn 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.sidebar-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: white;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
 
 .sidebar-item i {
   font-size: 18px;
   opacity: 0.9;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
+  min-width: 20px;
+  text-align: center;
 }
 
 .sidebar-item:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  transform: translateX(6px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.sidebar-item:hover i {
+  transform: scale(1.15);
 }
 
 .sidebar-item.active {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transform: translateX(6px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.sidebar-item.active::before {
+  transform: scaleY(1);
 }
 
 .sidebar-item.active i {
   color: #fff;
-  transform: scale(1.1);
+  transform: scale(1.2);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes fadeIn {

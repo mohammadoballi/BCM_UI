@@ -1,0 +1,114 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>Scan QR Code</h2>
+  <button mat-icon-button (click)="close()" class="close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content class="dialog-content">
+  <mat-tab-group>
+    <!-- Camera Tab -->
+    <mat-tab label="Camera">
+      <div class="tab-content">
+        <div class="camera-section">
+          <div class="camera-container" *ngIf="!capturedImage">
+            <video #video autoplay playsinline class="camera-video"></video>
+            
+            <div class="camera-controls" *ngIf="cameraActive">
+              <button mat-fab color="primary" (click)="capturePhoto()" class="capture-btn">
+                <mat-icon>camera</mat-icon>
+              </button>
+            </div>
+
+            <div class="camera-placeholder" *ngIf="!cameraActive">
+              <mat-icon>camera_alt</mat-icon>
+              <p>Camera not active</p>
+              <button mat-raised-button color="primary" (click)="startCamera()">
+                <mat-icon>videocam</mat-icon>
+                Start Camera
+              </button>
+            </div>
+          </div>
+
+          <div class="preview-container" *ngIf="capturedImage">
+            <img [src]="capturedImage" alt="Captured QR Code" class="captured-image" />
+            <div class="preview-actions">
+              <button mat-raised-button (click)="retakePhoto()">
+                <mat-icon>refresh</mat-icon>
+                Retake
+              </button>
+              <button mat-raised-button color="primary" (click)="submitQRCode()">
+                <mat-icon>send</mat-icon>
+                Submit QR Code
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <canvas #canvas style="display: none;"></canvas>
+      </div>
+    </mat-tab>
+
+    <!-- Upload Tab -->
+    <mat-tab label="Upload Image">
+      <div class="tab-content">
+        <div class="upload-section">
+          <div class="upload-area" [class.has-image]="capturedImage" (click)="triggerFileInput()">
+            <div class="upload-icon" *ngIf="!capturedImage">
+              <mat-icon>add_photo_alternate</mat-icon>
+            </div>
+            
+            <div class="upload-text" *ngIf="!capturedImage">
+              <h3>Click to upload QR code image</h3>
+              <p>Supports JPG, PNG, GIF formats</p>
+            </div>
+
+            <div class="preview-container" *ngIf="capturedImage">
+              <img [src]="capturedImage" alt="Uploaded QR Code" class="captured-image" />
+            </div>
+
+            <input 
+              #fileInput
+              type="file" 
+              (change)="onFileSelected($event)" 
+              accept="image/*"
+              style="display: none;"
+            />
+          </div>
+
+          <div class="upload-actions" *ngIf="capturedImage">
+            <button mat-raised-button (click)="capturedImage = null; selectedFile = null">
+              <mat-icon>delete</mat-icon>
+              Remove
+            </button>
+            <button mat-raised-button color="primary" (click)="submitQRCode()">
+              <mat-icon>send</mat-icon>
+              Submit QR Code
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- Error Message -->
+  <div class="error-message" *ngIf="error">
+    <mat-icon>error</mat-icon>
+    <span>{{ error }}</span>
+  </div>
+
+  <!-- Instructions -->
+  <div class="instructions">
+    <h4><mat-icon>info</mat-icon> Instructions:</h4>
+    <ul>
+      <li>Use the camera to scan a QR code in real-time</li>
+      <li>Or upload an image containing a QR code</li>
+      <li>Make sure the QR code is clear and well-lit</li>
+      <li>The QR code should contain business card information</li>
+    </ul>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-button (click)="close()">Cancel</button>
+</mat-dialog-actions>

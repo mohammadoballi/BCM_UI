@@ -1,16 +1,76 @@
-<table class="ui-table">
-  <thead>
-    <tr>
-      <th>Column 1</th>
-      <th>Column 2</th>
-      <th>Column 3</th>
+<div class="table-container">
+  <!-- Export Button -->
+  <div class="table-header" *ngIf="showExport">
+    <button mat-raised-button [matMenuTriggerFor]="exportMenu" class="export-btn">
+      <mat-icon>download</mat-icon>
+      Export
+    </button>
+    <mat-menu #exportMenu="matMenu">
+      <button mat-menu-item (click)="exportToCSV()">
+        <mat-icon>description</mat-icon>
+        <span>Export as CSV</span>
+      </button>
+      <button mat-menu-item (click)="exportToExcel()">
+        <mat-icon>table_chart</mat-icon>
+        <span>Export as Excel</span>
+      </button>
+      <button mat-menu-item (click)="exportToXML()">
+        <mat-icon>code</mat-icon>
+        <span>Export as XML</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <table mat-table [dataSource]="data" class="mat-elevation-z8">
+    
+    <!-- Dynamic Columns -->
+    <ng-container *ngFor="let col of columns" [matColumnDef]="col.key">
+      <th mat-header-cell *matHeaderCellDef>{{ col.label }}</th>
+      <td mat-cell *matCellDef="let row">
+        <img *ngIf="isImageColumn(col.key) && row[col.key]" 
+             [src]="row[col.key]" 
+             alt="Image" 
+             class="table-image" />
+        <span *ngIf="!isImageColumn(col.key) || !row[col.key]">{{ row[col.key] }}</span>
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions" *ngIf="showActions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let row" class="actions-cell">
+        <button 
+          mat-icon-button
+          *ngFor="let btn of actionButtons"
+          (click)="onAction(btn.key, row)"
+          [class]="'action-icon-btn action-' + btn.key"
+          [title]="btn.label">
+          <mat-icon>{{ getActionIcon(btn.key) }}</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    
+    <!-- Data Rows -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- No Data Row -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="displayedColumns.length" style="text-align: center; padding: 20px;">
+        No data available
+      </td>
     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Data 1</td>
-      <td>Data 2</td>
-      <td>Data 3</td>
-    </tr>
-  </tbody>
-</table>
+  </table>
+
+  <!-- Material Paginator -->
+  <mat-paginator 
+    [length]="total"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex - 1"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    (page)="onPageChange($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>

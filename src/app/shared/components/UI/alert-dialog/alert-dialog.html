@@ -1,0 +1,20 @@
+<div class="alert-container" [class.success]="data.type === 'success'" [class.error]="data.type === 'error'">
+  <div class="icon-wrapper">
+    <mat-icon class="alert-icon">{{ icon }}</mat-icon>
+  </div>
+  
+  <div class="content-wrapper">
+    <h2 class="alert-title">{{ title }}</h2>
+    <p class="alert-message">{{ data.message }}</p>
+  </div>
+  
+  <button mat-icon-button (click)="close()" class="close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-actions align="center" class="dialog-actions">
+  <button mat-raised-button class="action-btn" (click)="close()">
+    OK
+  </button>
+</mat-dialog-actions>

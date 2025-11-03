@@ -1,30 +1,37 @@
-  import { Injectable } from "@angular/core";
-  import { HttpClient } from "@angular/common/http";
-  import { Observable } from "rxjs";
-  import { BaseResponse } from "../models/BaseResponse.model";
-  import { environment } from "../../env/development.env";
-  
-  @Injectable({
-    providedIn: 'root'
-  })
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { BaseResponse } from "../models/BaseResponse.model";
+import { environment } from "../../env/development.env";
 
-  export class ApiService {
+@Injectable({
+  providedIn: 'root'
+})
 
-    constructor(private http: HttpClient) { }
+export class ApiService {
 
-    get<T>(url: string): Observable<BaseResponse<T>> {
-      return this.http.get<BaseResponse<T>>(`${environment.BaseURL}/${url}`);
-    }
+  constructor(private http: HttpClient) { }
 
-    post<T>(url: string, data: any): Observable<BaseResponse<T>> {
-      return this.http.post<BaseResponse<T>>(`${environment.BaseURL}/${url}`, data);
-    }
+get<T>(url: string, options?: { params?: any; headers?: any }): Observable<BaseResponse<T>> {
+  const fullUrl = `${environment.BaseURL}/${url}`;
+  return this.http.get<BaseResponse<T>>(fullUrl, {
+    ...options,
+    observe: 'body',      
+    responseType: 'json',  // 👈 ensures type is parsed as JSON
+  });
+}
 
-    put<T>(url: string, data: any): Observable<BaseResponse<T>> {
-      return this.http.put<BaseResponse<T>>(`${environment.BaseURL}/${url}`, data);
-    }
 
-    delete<T>(url: string): Observable<BaseResponse<T>> {
-      return this.http.delete<BaseResponse<T>>(`${environment.BaseURL}/${url}`);
-    }
+
+  post<T>(url: string, data: any): Observable<BaseResponse<T>> {
+    return this.http.post<BaseResponse<T>>(`${environment.BaseURL}/${url}`, data);
   }
+
+  put<T>(url: string, data: any): Observable<BaseResponse<T>> {
+    return this.http.put<BaseResponse<T>>(`${environment.BaseURL}/${url}`, data);
+  }
+
+  delete<T>(url: string): Observable<BaseResponse<T>> {
+    return this.http.delete<BaseResponse<T>>(`${environment.BaseURL}/${url}`);
+  }
+}

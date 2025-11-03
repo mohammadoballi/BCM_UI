@@ -1,0 +1,67 @@
+<div class="dialog-header-actions">
+  <button mat-icon-button (click)="downloadCard()" class="download-btn" title="Download Business Card">
+    <mat-icon>download</mat-icon>
+  </button>
+  <button mat-icon-button (click)="close()" class="close-btn-top">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content class="dialog-content" #cardContent>
+  <div class="business-card-template">
+    <!-- Left Side - White Section -->
+    <div class="card-left">
+      <div class="card-header">
+        <h1 class="card-name">{{ data.card.name }}</h1>
+        <p class="card-title">Professional</p>
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <mat-icon class="contact-icon">phone</mat-icon>
+          <span>{{ data.card.phone }}</span>
+        </div>
+        
+        <div class="contact-item">
+          <mat-icon class="contact-icon">language</mat-icon>
+          <span>{{ data.card.email }}</span>
+        </div>
+        
+        <div class="contact-item">
+          <mat-icon class="contact-icon">email</mat-icon>
+          <span>{{ data.card.email }}</span>
+        </div>
+        
+        <div class="contact-item">
+          <mat-icon class="contact-icon">location_on</mat-icon>
+          <span>{{ data.card.address }}</span>
+        </div>
+      </div>
+
+      <div class="additional-info">
+        <div class="info-badge">
+          <mat-icon>wc</mat-icon>
+          <span>{{ data.card.gender }}</span>
+        </div>
+        <div class="info-badge">
+          <mat-icon>cake</mat-icon>
+          <span>{{ formatDate(data.card.birthDate) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Blue Section with Image -->
+    <div class="card-right">
+      <div class="decorative-wave"></div>
+      
+      <div class="logo-section">
+        <div class="logo-circle">
+          <div class="logo-inner">
+            <mat-icon [class.hidden]="data.card.image">person</mat-icon>
+            <img [class.hidden]="!data.card.image" [src]="data.card.image" [alt]="data.card.name" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
