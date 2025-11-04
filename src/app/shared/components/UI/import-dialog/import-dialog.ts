@@ -8,8 +8,9 @@ import { SpinnerService } from '../../../../core/services/spinner.service';
 import { CardService } from '../../../../core/services/card.service';
 import { AlertService } from '../../../../core/services/alert.service';
 import { numberToGender } from '../../../../core/utils/gender.utils';
-import {Table} from '../table/table' 
+import { PreviewTable } from '../preview-table/preview-table';
 import * as XLSX from 'xlsx';
+
 @Component({
   selector: 'app-import-dialog',
   templateUrl: './import-dialog.html',
@@ -21,7 +22,7 @@ import * as XLSX from 'xlsx';
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
-    Table
+    PreviewTable
   ],
 })
 export class ImportDialog {
@@ -277,7 +278,21 @@ export class ImportDialog {
       });
     }
     
-    // For CSV and XML, create CSV content
+    // If original file was XML, create XML file
+    if (this.fileType === 'xml') {
+      const xmlContent = this.createXMLContent(headers);
+      const blob = new Blob([xmlContent], { type: 'text/xml' });
+      
+      // Ensure filename ends with .xml
+      let fileName = this.fileName;
+      if (!fileName.toLowerCase().endsWith('.xml')) {
+        fileName = fileName.replace(/\.[^.]*$/, '') + '.xml';
+      }
+      
+      return new File([blob], fileName, { type: 'text/xml' });
+    }
+    
+    // For CSV, create CSV content
     const csvRows = [headers.join(',')];
     
     this.previewData.forEach(row => {
@@ -297,14 +312,45 @@ export class ImportDialog {
     
     // Ensure filename ends with .csv
     let fileName = this.fileName;
-    if (this.fileType === 'xml') {
-      // Convert XML filename to CSV
-      fileName = fileName.replace(/\.[^.]*$/, '') + '.csv';
-    } else if (!fileName.toLowerCase().endsWith('.csv')) {
+    if (!fileName.toLowerCase().endsWith('.csv')) {
       fileName = fileName.replace(/\.[^.]*$/, '') + '.csv';
     }
     
     return new File([blob], fileName, { type: 'text/csv' });
+  }
+
+  private createXMLContent(headers: string[]): string {
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<Cards>\n';
+    
+    this.previewData.forEach(row => {
+      xml += '    <Card>\n';
+      headers.forEach(header => {
+        const value = row[header] || '';
+        // Escape XML special characters
+        const escapedValue = this.escapeXML(value.toString());
+        // Convert camelCase back to PascalCase for XML tags
+        const tagName = this.toPascalCase(header);
+        xml += `        <${tagName}>${escapedValue}</${tagName}>\n`;
+      });
+      xml += '    </Card>\n';
+    });
+    
+    xml += '</Cards>';
+    return xml;
+  }
+
+  private escapeXML(value: string): string {
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
+  }
+
+  private toPascalCase(str: string): string {
+    // Convert camelCase to PascalCase
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   onDragOver(event: DragEvent): void {
@@ -361,6 +407,13 @@ export class ImportDialog {
     const link = document.createElement('a');
     link.href = '/template/EXCELSHEET-TEMPLATE.xlsx';
     link.download = 'EXCELSHEET-TEMPLATE.xlsx';
+    link.click();
+  }
+
+  downloadXMLTemplate(): void {
+    const link = document.createElement('a');
+    link.href = '/template/XML-TEMPLATE.xml';
+    link.download = 'XML-TEMPLATE.xml';
     link.click();
   }
 }

@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Card } from '../../../../core/models/card.model';
+import { formatDateToYYYYMMDD } from '../../../../core/utils/date.utils';
 @Component({
   selector: 'app-card-details-dialog',
   templateUrl: './card-details-dialog.html',
@@ -24,23 +25,19 @@ export class CardDetailsDialog {
     @Inject(MAT_DIALOG_DATA) public data: { card: Card }
   ) {}
 
-
+onInit(): void {
+  this.data.card.birthDate = new Date(this.data.card.birthDate);
+}
 
   close(): void {
     this.dialogRef.close();
   }
 
-  formatDate(date: Date): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+  formatDate(date: Date | string): string {
+    return formatDateToYYYYMMDD(date) || 'N/A';
   }
 
   downloadCard(): void {
-    // Use html2canvas to capture the card as an image
     import('html2canvas').then((html2canvas) => {
       const cardElement = this.cardContent.nativeElement.querySelector('.business-card-template');
       
@@ -49,7 +46,6 @@ export class CardDetailsDialog {
         backgroundColor: '#ffffff',
         logging: false,
       }).then((canvas) => {
-        // Convert canvas to blob and download
         canvas.toBlob((blob) => {
           if (blob) {
             const url = URL.createObjectURL(blob);

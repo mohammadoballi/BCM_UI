@@ -12,7 +12,7 @@ export class CardService {
   public createCard(cardDto : CardCreateDTO){
     const formData = new FormData();
     formData.append('name', cardDto.name);
-    formData.append('gender', cardDto.gender);
+    formData.append('gender', cardDto.gender.toString());
     formData.append('birthDate', cardDto.birthDate.toISOString());
     formData.append('email', cardDto.email);
     formData.append('phone', cardDto.phone);
@@ -27,7 +27,7 @@ export class CardService {
     const formData = new FormData();
     formData.append('id', cardDto.id);
     if (cardDto.name) formData.append('name', cardDto.name);
-    if (cardDto.gender) formData.append('gender', cardDto.gender);
+    if (cardDto.gender !== null && cardDto.gender !== undefined) formData.append('gender', cardDto.gender.toString());
     if (cardDto.birthDate) formData.append('birthDate', cardDto.birthDate.toISOString());
     if (cardDto.email) formData.append('email', cardDto.email);
     if (cardDto.phone) formData.append('phone', cardDto.phone);

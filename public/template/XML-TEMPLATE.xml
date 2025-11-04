@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cards>
+    <Card>
+        <Name>John Doe</Name>
+        <Gender>Male</Gender>
+        <Email>john.doe@example.com</Email>
+        <Phone>+1234567890</Phone>
+        <BirthDate>1990-01-15</BirthDate>
+        <Address>123 Main Street- New York</Address>
+        <image>test</image>
+    </Card>
+</Cards>

@@ -27,10 +27,11 @@
 
 .dialog-content {
   padding: 24px !important;
-  min-width: 600px;
-  max-width: 800px;
+  min-width: 700px;
+  max-width: 90vw;
   max-height: 70vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Upload Section */
@@ -168,6 +169,8 @@
   background: #ffffff;
   border-radius: 12px;
   border: 2px solid #e0e0e0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .preview-section h3 {
@@ -179,53 +182,28 @@
 
 .preview-table-container {
   overflow-x: auto;
-  max-height: 300px;
   overflow-y: auto;
+  max-height: 400px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-}
-
-.preview-table {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
+  position: relative;
 }
 
-.preview-table thead {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.preview-table-container app-preview-table {
+  display: block;
+  width: 100%;
 }
 
-.preview-table th {
-  padding: 12px 16px;
-  text-align: left;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-size: 12px;
+.preview-table-container .preview-table-wrapper {
+  width: 100%;
 }
 
-.preview-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid #e0e0e0;
-  color: #475569;
+.preview-table-container table {
+  width: 100%;
+  table-layout: auto;
 }
 
-.preview-table tbody tr:hover {
-  background: #f8fafc;
-}
-
-.preview-image {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
 
 .preview-note {
   display: flex;
@@ -275,17 +253,18 @@
 }
 
 .template-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 12px;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .download-template-btn {
   font-weight: 600 !important;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  flex: 1;
-  min-width: 200px;
+  width: 100%;
+  padding: 12px 16px !important;
 }
 
 /* Dialog Actions */
@@ -318,15 +297,6 @@
     font-size: 48px;
     width: 48px;
     height: 48px;
-  }
-
-  .preview-table {
-    font-size: 11px;
-  }
-
-  .preview-table th,
-  .preview-table td {
-    padding: 8px 12px;
   }
 }
 

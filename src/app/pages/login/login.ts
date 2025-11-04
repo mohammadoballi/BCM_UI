@@ -3,12 +3,12 @@ import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UI_COMPONENTS } from '../../shared/components/UI/ui-module';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ...UI_COMPONENTS],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
 })

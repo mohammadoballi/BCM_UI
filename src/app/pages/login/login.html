@@ -4,25 +4,34 @@
     <p class="subtitle">Welcome back! Please log in to continue.</p>
 
     <form (ngSubmit)="onSubmit()">
-      <app-input
-        [label]="'Username'"
-        [type]="'text'"
-        [(value)]="username"
-      ></app-input>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-input"
+          [(ngModel)]="username"
+          name="username"
+          required
+          placeholder=" "
+        />
+        <label class="form-label">Username</label>
+      </div>
 
-      <app-input
-        [label]="'Password'"
-        [type]="'password'"
-        [(value)]="password"
-      ></app-input>
+      <div class="input-group">
+        <input
+          type="password"
+          class="form-input"
+          [(ngModel)]="password"
+          name="password"
+          required
+          placeholder=" "
+        />
+        <label class="form-label">Password</label>
+      </div>
 
-      <app-button
-        [label]="'Login'"
-        [type]="'submit'"
-        [class]="'primary w-full'"
-        [icon]="'fa fa-sign-in'"
-        [disabled]="false"
-      ></app-button>
+      <button type="submit" class="login-btn">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
     </form>
   </div>
 </div>

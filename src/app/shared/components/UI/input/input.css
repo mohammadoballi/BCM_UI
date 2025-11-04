@@ -10,12 +10,14 @@
   width: 100%;
   padding: 14px 16px;
   color: #2d3748;
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15); /* translucent background */
+  border: 2px solid rgba(102, 126, 234, 0.4);
+  border-radius: 12px;
   outline: none;
   font-size: 14px;
   font-weight: 500;
+  backdrop-filter: blur(12px); /* ✅ adds blur */
+  -webkit-backdrop-filter: blur(12px);
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease,
@@ -24,8 +26,8 @@
 
 .form-control:focus {
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Floating Label */
@@ -37,14 +39,17 @@
   font-size: 14px;
   font-weight: 500;
   pointer-events: none;
+  background: rgba(255, 255, 255, 0.25); /* semi-transparent */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0 6px;
+  border-radius: 6px;
   transition:
     top 0.25s ease,
     font-size 0.25s ease,
     color 0.25s ease,
     transform 0.25s ease,
     opacity 0.25s ease;
-  background: #ffffff;
-  padding: 0 4px;
 }
 
 /* Float Higher */
@@ -54,8 +59,10 @@
   left: 12px;
   font-size: 12px;
   color: #667eea;
+  background: rgba(255, 255, 255, 0.35); /* more visible when floating */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   opacity: 1;
-  transform: translateY(0);
   font-weight: 600;
 }
 

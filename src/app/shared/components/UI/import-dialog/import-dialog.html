@@ -67,14 +67,10 @@
   <div class="preview-section" *ngIf="previewData.length > 0 && !uploading">
     <h3>Preview</h3>
     <div class="preview-table-container">
-      <app-table
+      <app-preview-table
         [columns]="tableColumns"
-        [data]="previewData"
-        [total]="previewData.length"
-        [pageSize]="10"
-        [showActions]="false"
-        [showExport]="false">
-      </app-table>
+        [data]="previewData">
+      </app-preview-table>
     </div>
     <p class="preview-note">
       <mat-icon>info</mat-icon>
@@ -100,6 +96,10 @@
       <button mat-stroked-button color="primary" class="download-template-btn" (click)="downloadExcelTemplate()">
         <mat-icon>table_chart</mat-icon>
         Download Excel Template
+      </button>
+      <button mat-stroked-button color="primary" class="download-template-btn" (click)="downloadXMLTemplate()">
+        <mat-icon>code</mat-icon>
+        Download XML Template
       </button>
     </div>
   </div>

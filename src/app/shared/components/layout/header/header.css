@@ -36,6 +36,7 @@
   border-radius: 12px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
   backdrop-filter: blur(15px);
+  color: #ffffff;
   -webkit-backdrop-filter: blur(15px);
   border: 2px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
@@ -64,8 +65,10 @@
   opacity: 1;
 }
 
-.hamburger-btn i {
-  font-size: 24px;
+.hamburger-btn mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -79,7 +82,7 @@
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-.hamburger-btn:hover i {
+.hamburger-btn:hover mat-icon {
   transform: scale(1.2) rotate(-5deg);
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
 }
@@ -87,29 +90,6 @@
 .hamburger-btn:active {
   transform: scale(0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.2);
-}
-
-.hamburger-fallback {
-  font-size: 26px;
-  color: white;
-  font-weight: 300;
-  line-height: 1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-
-/* Hide fallback if FontAwesome is loaded */
-.hamburger-btn i.fa {
-  display: block;
-}
-
-.hamburger-btn i.fa ~ .hamburger-fallback {
-  display: none;
-}
-
-/* Show fallback if FontAwesome is not loaded */
-.hamburger-btn i:not(.fa-bars):not(.fa-times) ~ .hamburger-fallback {
-  display: block;
 }
 
 /* Animation for icon change */

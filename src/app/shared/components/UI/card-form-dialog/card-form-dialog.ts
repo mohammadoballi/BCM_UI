@@ -36,8 +36,8 @@ export class CardFormDialog {
   imageFile: File | null = null;
 
   genderOptions = [
-    { label: 'Male', value: 'Male' },
-    { label: 'Female', value: 'Female' }
+    { label: 'Male', value: 0 },
+    { label: 'Female', value: 1 }
   ];
 
   constructor(
@@ -54,6 +54,7 @@ export class CardFormDialog {
       birthDate: new Date(),
       image: ''
     };
+    
     
     if (this.card.image) {
       this.imagePreview = this.card.image;
@@ -80,12 +81,21 @@ export class CardFormDialog {
 
   onSubmit(): void {
     if (this.isValid()) {
-      this.dialogRef.close({ ...this.card, imageFile: this.imageFile });
+      const result = {
+        ...this.card,
+        imageFile: this.imageFile
+      };
+      this.dialogRef.close(result);
     }
   }
 
   isValid(): boolean {
-    return !!(this.card.name && this.card.gender && this.card.email && this.card.phone);
+    return !!(
+      this.card.name && 
+      (this.card.gender !== null && this.card.gender !== undefined && this.card.gender !== '') && 
+      this.card.email && 
+      this.card.phone
+    );
   }
 
   close(): void {

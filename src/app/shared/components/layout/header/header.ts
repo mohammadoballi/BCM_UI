@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { Button } from '../../UI/button/button';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, Button],
+  imports: [CommonModule, MatIconModule, Button],
   templateUrl: './header.html',
   styleUrls: ['./header.css'],
 })

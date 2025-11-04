@@ -1,35 +1,35 @@
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Chrome against ng serve",
+      "name": "Debug Angular in Chrome",
       "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: start",
       "url": "http://localhost:4200",
       "webRoot": "${workspaceFolder}/src",
       "sourceMaps": true,
-      "trace": true,
+      "trace": false,
       "runtimeArgs": [
         "--remote-debugging-port=9222",
         "--disable-infobars"
       ]
     },
     {
-      "name": "Attach to Chrome",
+      "name": "Attach to Running Chrome",
       "type": "chrome",
       "request": "attach",
       "port": 9222,
-      "webRoot": "${workspaceFolder}/src"
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMaps": true
     },
     {
-      "name": "ng test",
+      "name": "Debug Angular Tests",
       "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: test",
       "url": "http://localhost:9876/debug.html",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}/src"
     }
   ]
 }

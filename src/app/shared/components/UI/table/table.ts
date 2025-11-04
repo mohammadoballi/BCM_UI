@@ -89,7 +89,7 @@ export class Table {
         let value = row[col.key];
         
         if (this.isImageColumn(col.key)) {
-          // Truncate base64 images that exceed Excel's cell limit
+
           if (value && String(value).length > MAX_CELL_LENGTH) {
             sanitizedRow[col.label] = String(value).substring(0, MAX_CELL_LENGTH - 20) + '...[TRUNCATED]';
           } else {
@@ -106,7 +106,6 @@ export class Table {
           value = String(value).replace(/,/g, '-');
         }
         
-        // Ensure no value exceeds Excel's cell character limit
         if (value !== null && value !== undefined) {
           const stringValue = String(value);
           if (stringValue.length > MAX_CELL_LENGTH) {
@@ -143,17 +142,14 @@ export class Table {
       const values = keys.map(key => {
         let value = row[key];
         
-        // Convert gender to number
         if (key.toLowerCase() === 'gender' && value) {
           value = genderToNumber(value);
         }
         
-        // Replace commas with dashes in address fields
         if (key.toLowerCase() === 'address' && value) {
           value = String(value).replace(/,/g, '-');
         }
         
-        // Keep image base64 data as is
         return this.escapeCSVValue(value);
       });
       csvRows.push(values.join(','));

@@ -1,9 +1,8 @@
 <div class="app-header">
   <div class="header-left">
     <button class="hamburger-btn" (click)="onToggleSidebar()" title="Toggle Sidebar">
-      <i class="fa" [class.fa-bars]="!isSidebarOpen" [class.fa-times]="isSidebarOpen"></i>
-      <span class="hamburger-fallback" *ngIf="!isSidebarOpen">☰</span>
-      <span class="hamburger-fallback" *ngIf="isSidebarOpen">✕</span>
+      <mat-icon *ngIf="!isSidebarOpen">menu</mat-icon>
+      <mat-icon *ngIf="isSidebarOpen">close</mat-icon>
     </button>
     <div class="header-logo">BCM</div>
     <div class="header-title">Business Card Manager</div>

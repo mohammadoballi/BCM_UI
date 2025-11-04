@@ -1,9 +1,8 @@
-
 export class CardCreateDTO {
 
     public name!: string;
 
-    public gender!: string;
+    public gender!: number;
 
     public birthDate!: Date;
 
@@ -23,7 +22,7 @@ export class CardUpdateDTO {
     public id!: string;
     public name!: string | null;
 
-    public gender!: string | null;
+    public gender!: number | null;
 
     public birthDate!: Date | null;
 
@@ -42,9 +41,9 @@ export class Card{
 
   public name!: string;
 
-  public gender!: string;
+  public gender!: string | number;
 
-  public birthDate!: Date;
+  public birthDate!: Date | string;
 
 
   public email!: string;

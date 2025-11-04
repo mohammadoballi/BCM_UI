@@ -5,8 +5,10 @@
     (ngModelChange)="valueChange.emit($event)"
     [ngModelOptions]="{ standalone: true }"
   >
-    <option [ngValue]="undefined"></option>
-    <option *ngFor="let opt of options" [ngValue]="opt.value">{{ opt.label }}</option>
+    <option [ngValue]="undefined" selected >ALL</option>
+    <option *ngFor="let opt of options" [ngValue]="opt.value">
+      {{ opt.label }}
+    </option>
   </select>
   <label *ngIf="label">{{ label }}</label>
 </div>

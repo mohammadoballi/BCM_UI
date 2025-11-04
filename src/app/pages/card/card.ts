@@ -11,13 +11,18 @@ import { CardFormDialog } from '../../shared/components/UI/card-form-dialog/card
 import { ImportDialog } from '../../shared/components/UI/import-dialog/import-dialog';
 import { QRScannerDialog } from '../../shared/components/UI/qr-scanner-dialog/qr-scanner-dialog';
 import { getImageUrl } from '../../core/utils/image.utils';
-import { numberToGender } from '../../core/utils/gender.utils';
+import { genderToNumber, numberToGender } from '../../core/utils/gender.utils';
 import { SpinnerService } from '../../core/services/spinner.service';
 import { AlertService } from '../../core/services/alert.service';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { formatDateToYYYYMMDD } from '../../core/utils/date.utils';
+
+
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [...UI_COMPONENTS, MatDialogModule, MatButtonModule, MatIconModule],
+  imports: [...UI_COMPONENTS, MatDialogModule, MatButtonModule, MatIconModule, MatNativeDateModule, MatDatepickerModule],
   templateUrl: './card.html',
   styleUrl: './card.css',
 })
@@ -66,7 +71,6 @@ export class CardManager {
     }
 
     getAllCards(){
-        // keep request in sync with local paging before calling
         this.getAllRequest.pageIndex = this.pageIndex;
         this.getAllRequest.pageSize = this.pageSize;
         
@@ -77,13 +81,13 @@ export class CardManager {
               if(res.data != null){
                 this.cards = res.data.map((card: any) => {
                   card.image = getImageUrl(card.image);
+                  card.birthDate = formatDateToYYYYMMDD(new Date(card.birthDate));
                   return card;
                 });
               }else{
                 this.cards = [];
               }
 
-              // update pagination if provided
               const p: any = res.pagination;
               if (p) {
                 this.total = p.total ?? this.total;
@@ -193,7 +197,11 @@ export class CardManager {
         next: (res) => {
           if (res.isSuccess && res.data) {
             res.data.image = getImageUrl(res.data.image);
-            res.data.gender = numberToGender(res.data.gender);
+            res.data.gender = genderToNumber(res.data.gender as string);
+            if (res.data.birthDate) {
+              res.data.birthDate = new Date(res.data.birthDate);
+            }
+          
             const dialogRef = this.dialog.open(CardFormDialog, {
               width: 'auto',
               maxWidth: '90vw',
@@ -244,6 +252,7 @@ export class CardManager {
           this.spinnerService.hide();
         }
       });
+  
     }
 
     openImportDialog(): void {
@@ -280,7 +289,7 @@ export class CardManager {
         next: (res) => {
           if (res.isSuccess && res.data) {
             res.data.image = getImageUrl(res.data.image);
-            res.data.gender = numberToGender(res.data.gender);
+            res.data.gender = typeof res.data.gender === "number" ? numberToGender(res.data.gender) : res.data.gender;
             this.dialog.open(CardDetailsDialog, {
               width: 'auto',
               maxWidth: '90vw',
